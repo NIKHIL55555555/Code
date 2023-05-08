@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Health Parameters</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<style>
+		.card {
+			background-color: #f1f1f1;
+			padding: 20px;
+			border-radius: 5px;
+			margin: 20px;
+			display: inline-block;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+
+		canvas {
+			max-width: 800px;
+			margin: 0 auto;
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 id="wer">Health Parameters for Room: 104</h1>
+	<div class="card">
+		<h2>Blood Pressure</h2>
+		<p>Systolic: 120 mmHg</p>
+		<p>Diastolic: 80 mmHg</p>
+	</div>
+	<div class="card">
+		<h2>Heart Rate</h2>
+		<p>72 bpm</p>
+	</div>
+	<div class="card">
+		<h2>Body Temperature</h2>
+		<p>98.6 &#8457;</p>
+	</div>
+	<canvas id="health-chart"></canvas>
+	<script>
+		var ctx = document.getElementById('health-chart').getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+				datasets: [{
+					label: 'Blood Pressure',
+					data: [120, 115, 118, 122, 126, 120, 124],
+					borderColor: 'rgb(255, 99, 132)',
+					fill: false
+				}, {
+					label: 'Heart Rate',
+					data: [70, 68, 71, 74, 72, 73, 72],
+					borderColor: 'rgb(54, 162, 235)',
+					fill: false
+				}, {
+					label: 'Body Temperature',
+					data: [98.6, 98.5, 98.7, 98.8, 98.4, 98.6, 98.9],
+					borderColor: 'rgb(255, 205, 86)',
+					fill: false
+				}]
+			},
+			options: {}
+		});
+	</script>
+
+	<script src="app.js"></script>
+</body>
+
+</html>

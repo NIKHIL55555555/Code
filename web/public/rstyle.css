@@ -1,0 +1,81 @@
+/* set body margin and padding to 0 */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* style the container */
+.container {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin: 17px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    opacity: 0.8;
+    /* set the opacity of the table to 80% */
+    background-color: white;
+    /* set the background color of the table to white */
+    position: absolute;
+    /* position the table absolutely on top of the background image */
+    top: 47%;
+    /* vertically center the table */
+    left: 50%;
+    /* horizontally center the table */
+    transform: translate(-50%, -50%);
+    /* center the table exactly in the middle of the page */
+    z-index: 1;
+}
+
+/* style the h1 element */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* style the buttons */
+.buttons button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 150px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 50px;
+    border-radius: 5px;
+}
+
+/* style the labels */
+.buttons label {
+    display: inline-block;
+    font-size: 1em;
+    margin-right: 50px;
+}
+
+/* style the input fields */
+.buttons input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-size: 1em;
+    padding: 10px;
+    width: 200px;
+}
+
+/* style the save buttons */
+.buttons button.btn-success {
+    background-color: #008CBA;
+    margin-left: 25px;
+}
+
+/* style the container for smaller screens */
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+}
