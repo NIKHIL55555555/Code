@@ -16,13 +16,11 @@ app.use(function (req, res, next) {
 
 const port = 5001;
 
-
 app.get('/data/devices', (req, res) => {
   Device.find({})
     .then(devices => res.send(devices))
     .catch(err => res.send(err));
 })
-
 
 app.post('/data/devices', async (req, res) => {
   const { id, password } = req.body;

@@ -1,3 +1,34 @@
+/**
+* @swagger
+* components:
+*   schema:
+*     SensorData:
+*       type: object
+*       properties:
+*         ultradata:
+*           type: string
+*         motiondata:
+*           type: string
+*         date:
+*           type: string
+* 
+* @swagger
+* /sensor-data/SensorData:
+*  get:
+*      title:
+*      summary:
+*      description:
+*      responses:
+*          200:
+*              description:
+*              content:
+*                  application/json:
+*                      schema:
+*                          type: array
+*                          items:
+*                              $ref: '#/components/schema/SensorData'
+*/
+
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://nkverma1314:ASDFGhjkl@cluster0.odqpocw.mongodb.net/mydb', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -5,6 +36,8 @@ const mqtt = require('mqtt');
 const express = require('express');
 const bodyParser = require('body-parser');
 const Mqttdata = require('./models/device');
+const swaggerjsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 app.use(express.static('public'));
@@ -22,6 +55,30 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Active Sense",
+      version: "0.1.0",
+    },
+    servers: [
+      {
+        url: "https://sdata.onrender.com",
+      },
+    ],
+  },
+  apis: ["./*.js"],
+};
+
+const specs = swaggerjsdoc(options);
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
+
 const brokerUrl = 'mqtt://localhost:1883';
 const topic = 'sensordata'
 const topic1 = 'sensordata1'
@@ -31,12 +88,23 @@ const topic4 = 'dateandtime'
 
 const client = mqtt.connect(brokerUrl);
 
-app.get('/sensor-data/SensorData', (req, res) => {
-  Mqttdata.find()
-    .then((data1) => {
-      res.send(data1);
-    })
+// app.get('/sensor-data/SensorData', (req, res) => {
+//   Mqttdata.find()
+//     .then((data1) => {
+//       res.send(data1);
+//     })
+// });
+
+app.get('/sensor-data/SensorData', async (req, res) => {
+  try {
+    const data1 = await Mqttdata.find();
+    res.send(data1);
+  } catch (error) {
+    // Handle any errors that occur during the data retrieval
+    res.status(500).send('An error occurred while retrieving the sensor data.');
+  }
 });
+
 
 client.on('connect', function () {
   console.log('Connected to MQTT broker');

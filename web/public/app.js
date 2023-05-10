@@ -1,10 +1,9 @@
-const RECPDATA_URL = 'http://localhost:5001/data';
-const SENSORDATA_URL = 'http://localhost:5003/sensor-data';
+const RECPDATA_URL = 'https://input-nrzf.onrender.com';
+const SENSORDATA_URL = 'https://sdata.onrender.com';
 //const USERDATA_URL = 'http://localhost:5002/user-data';
+// http://localhost:5003/sensor-data
 
-
-
-$.get(`${SENSORDATA_URL}/SensorData`)
+$.get(`${SENSORDATA_URL}/sensor-data/SensorData`)
   .then(response => {
     response.forEach(device => {
       $('#patientdata tbody').append(`
@@ -22,7 +21,7 @@ $.get(`${SENSORDATA_URL}/SensorData`)
     console.error(`Error: ${error}`);
   });
 
-$.get(`${RECPDATA_URL}/devices`)
+$.get(`${RECPDATA_URL}/data/devices`)
   .then(response => {
     $('#add-user').on('click', () => {
       const user = $('#user').val();
@@ -70,7 +69,7 @@ var value2 = [];
 var value3 = [];
 var value4 = [];
 
-$.get(`${SENSORDATA_URL}/SensorData`)
+$.get(`${SENSORDATA_URL}/sensor-data/SensorData`)
   .then(response => {
     response.forEach(device => {
       lastvalue = device.room_temp;
@@ -206,7 +205,7 @@ $('#add-new-user').on('click', () => {
     password
   };
 
-  $.post(`${RECPDATA_URL}/devices`, body)
+  $.post(`${RECPDATA_URL}/data/devices`, body)
     .then(response => {
       location.href = 'welcome.html';
     })
@@ -224,7 +223,7 @@ $('#doctor').on('click', () => {
     password
   };
 
-  $.post(`${RECPDATA_URL}/devices`, body)
+  $.post(`${RECPDATA_URL}/data/devices`, body)
     .then(response => {
       location.href = 'welcome.html';
     })
@@ -242,7 +241,7 @@ $('#101').on('click', () => {
     password
   };
 
-  $.post(`${RECPDATA_URL}/devices`, body)
+  $.post(`${RECPDATA_URL}/data/devices`, body)
     .then(response => {
       location.href = 'welcome.html';
     })
@@ -260,7 +259,7 @@ $('#102').on('click', () => {
     password
   };
 
-  $.post(`${RECPDATA_URL}/devices`, body)
+  $.post(`${RECPDATA_URL}/data/devices`, body)
     .then(response => {
       location.href = 'welcome.html';
     })
@@ -278,7 +277,7 @@ $('#103').on('click', () => {
     password
   };
 
-  $.post(`${RECPDATA_URL}/devices`, body)
+  $.post(`${RECPDATA_URL}/data/devices`, body)
     .then(response => {
       location.href = 'welcome.html';
     })
@@ -296,7 +295,7 @@ $('#104').on('click', () => {
     password
   };
 
-  $.post(`${RECPDATA_URL}/devices`, body)
+  $.post(`${RECPDATA_URL}/data/devices`, body)
     .then(response => {
       location.href = 'welcome.html';
     })
